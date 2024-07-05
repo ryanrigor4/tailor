@@ -1,10 +1,11 @@
-document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('downloadBtn').addEventListener('click', () => {
-    console.log("Hello world");
 
-    downloadPDF();
-  });
-});
+const body = document.getElementsByTagName("body")[0];
+const screenContainer = document.getElementById("screen-container")
+const screens = document.getElementsByClassName("screen")
+const formScreen = document.getElementById("form")
+const resumeScreen = document.getElementById("resume")
+const loader = document.getElementById("loader")
+const downloadBtn = document.getElementById('downloadBtn');
 
 async function downloadPDF() {
   const myHeaders = new Headers();
@@ -61,4 +62,22 @@ Hello, World!
   } catch (error) {
     console.error('Failed to download PDF:', error);
   }
+}
+
+function showScreen (screenIndex){
+  
+}
+
+window.onload = () => {
+  // downloadBtn.addEventListener('click', () => {
+  //   downloadPDF();
+  // });
+  //load init db data
+
+  //
+  //mocking load
+  setTimeout(()=>{
+    loader.style.display = "none";
+
+  }, 3000)
 }

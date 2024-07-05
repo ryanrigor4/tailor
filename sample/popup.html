@@ -1,23 +1,82 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <script src="popup.js" defer></script>
   <title>PDF Downloader</title>
   <style>
-    body {
-      width: 200px;
-      height: 100px;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 10px;
+    *{
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
     }
+    :root{
+      --clr-primary: "";
+      --clr-secondary: "";
+      --clr-active: "";
+      --clr-black: #20272c;
+      --font-primary: sans-serif;
+    }
+    body {
+      border: solid green 1px;
+      color: var(--clr-black);
+      width: 450px;
+      height: 800px;
+      max-height: 800px;
+      font-family: var(--font-primary);
+      text-align: center;
+      padding: 10px 15px;
+      overflow: scroll;
+    }
+
     button {
       padding: 10px 20px;
       font-size: 16px;
     }
+    .container{
+      position: relative;
+      height: 100%;
+      width: 100%;
+    }
+    .flex-col{
+      display: flex;
+      flex-direction: column;
+    }
+    .flex-row{
+      display: flex;
+      align-items: center;
+    }
+
+    .flex-col-center{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .flex-row-center{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .absolute-center{
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      transform: translateY(-50%);
+    }
+
+   
+
   </style>
 </head>
 <body>
-  <button id="downloadBtn">Download PDF</button>
-  <script src="popup.js"></script>
+  <!-- <button id="downloadBtn">Download PDF</button> -->
+<div class="container flex-col-center" id="screen-container">
+  <div class="absolute-center" id="loader"><h1>LOGO</h1><img src="./assets/rippleLoading.svg"></div> 
+  <div class="screen" id = "form">FORM</div>
+  <div class="screen" id = "resume">RESUME</div>
+</div>
+
 </body>
 </html>
