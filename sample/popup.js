@@ -3,11 +3,13 @@ const body = document.getElementsByTagName("body")[0];
 
 const screenContainer = document.getElementById("screen-container")
 const screens = document.getElementsByClassName("screen")
-const formScreen = document.getElementById("form")
-const resumeScreen = document.getElementById("resume")
-const splashScreen = document.getElementById("splash")
+const formScreen = document.getElementById("form-container")
+const form = document.getElementById("form")
+const resumeScreen = document.getElementById("resume-container")
+const splashScreen = document.getElementById("splash-container")
 
-const downloadBtn = document.getElementById('downloadBtn');
+let downloadBtn = document.getElementById('download-btn');
+let generateBtn = document.getElementById('generate-btn');
 
 async function downloadPDF() {
   const myHeaders = new Headers();
@@ -77,10 +79,14 @@ window.onload = () => {
   downloadBtn.addEventListener('click', () => {
     downloadPDF();
   });
+  form.addEventListener("submit", (e) => {
+    e.preventDefault()
+    //gpt api call
+    slideScreen(2)
+  })
+
   //load init db data
 
   //mocking load
-  setTimeout(()=>{
-    splashScreen.style.display = "none";}, 3000)
-  setTimeout(()=>{slideScreen(0)}, 2000)
+  setTimeout(()=>{slideScreen(1)}, 2000)
 }
