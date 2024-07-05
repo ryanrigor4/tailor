@@ -1,10 +1,12 @@
 
 const body = document.getElementsByTagName("body")[0];
+
 const screenContainer = document.getElementById("screen-container")
 const screens = document.getElementsByClassName("screen")
 const formScreen = document.getElementById("form")
 const resumeScreen = document.getElementById("resume")
-const loader = document.getElementById("loader")
+const splashScreen = document.getElementById("splash")
+
 const downloadBtn = document.getElementById('downloadBtn');
 
 async function downloadPDF() {
@@ -64,20 +66,21 @@ Hello, World!
   }
 }
 
-function showScreen (screenIndex){
-  
+function slideScreen (screenIndex){
+  for(const screen of screens){
+    screen.classList.remove("active")
+  }
+  screens[screenIndex].classList.add("active")
 }
 
 window.onload = () => {
-  // downloadBtn.addEventListener('click', () => {
-  //   downloadPDF();
-  // });
+  downloadBtn.addEventListener('click', () => {
+    downloadPDF();
+  });
   //load init db data
 
-  //
   //mocking load
   setTimeout(()=>{
-    loader.style.display = "none";
-
-  }, 3000)
+    splashScreen.style.display = "none";}, 3000)
+  setTimeout(()=>{slideScreen(0)}, 2000)
 }
