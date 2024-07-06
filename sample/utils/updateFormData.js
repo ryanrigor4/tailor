@@ -1,11 +1,12 @@
-export let updateUserInfo = () => {
+export let updateFormData = () => {
     let formData = {
         firstName: document.getElementById("first-name").value,
         lastName: document.getElementById("last-name").value,
         skills: document.getElementById("skills").value,
         experiences: document.getElementById("experiences").value,
         projects: document.getElementById("projects").value,
-        certifications: document.getElementById("certifications").value
+        certifications: document.getElementById("certifications").value,
+        jobdescription: document.getElementById("jobdescription").value
       };
       localStorage.setItem("formData", JSON.stringify(formData));
 

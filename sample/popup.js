@@ -1,5 +1,5 @@
 import { downloadPDF } from "./utils/downloadPdf.js";
-import { updateUserInfo } from "./utils/updateUserInfo.js";
+import { updateFormData } from "./utils/updateFormData.js";
 import { loadFormData } from "./utils/loadFormData.js";
 
 const body = document.getElementsByTagName("body")[0];
@@ -22,7 +22,7 @@ function slideScreen(screenIndex) {
 }
 
 window.onload = () => {
-  loadFormData();
+  loadFormData(); //fills form based on localStorage
 
   downloadBtn.addEventListener('click', () => {
     console.log("Fetching PDF!");
@@ -31,8 +31,9 @@ window.onload = () => {
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    updateUserInfo();
+    updateFormData();
     // gpt api call
+    
     slideScreen(2);
   });
 
