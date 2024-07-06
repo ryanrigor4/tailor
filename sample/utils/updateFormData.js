@@ -6,7 +6,7 @@ export let updateFormData = () => {
         experiences: document.getElementById("experiences").value,
         projects: document.getElementById("projects").value,
         certifications: document.getElementById("certifications").value,
-        jobdescription: document.getElementById("jobdescription").value
+        jobdescription: document.getElementById("job-description").value
       };
       localStorage.setItem("formData", JSON.stringify(formData));
 

@@ -3,164 +3,54 @@
 <head>
   <script type="module" src="popup.js" defer></script>
   <title>PDF Downloader</title>
-  <style>
-    *{
-      padding: 0;
-      margin: 0;
-      box-sizing: border-box;
-    }
-    :root{
-      --clr-primary: "";
-      --clr-secondary: "";
-      --clr-active: "";
-      --clr-black: #20272c;
-      --font-primary: sans-serif;
-      --width: 450px;
-      --height: 800px;
-    }
-    body {
-      border: solid green 1px;
-      color: var(--clr-black);
-      width: var(--width);
-      height: var(--height);
-      max-height: var(--height);
-      font-family: var(--font-primary);
-      text-align: center;
-      padding: 10px 15px;
-      overflow: scroll;
-    }
-
-    button {
-      padding: 8px;
-      font-size: 16px;
-    }
-    .container{
-      position: relative;
-      height: 100%;
-      width: 100%;
-    }
-    .flex-col{
-      display: flex;
-      align-items: start;
-      flex-direction: column;
-    }
-    .flex-row{
-      display: flex;
-      justify-content: start;
-      align-items: center;
-    }
-
-    .flex-col-between{
-      display: flex;
-      flex-direction: col;
-      align-items: space-between;
-    }
-    .flex-row-between{
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .flex-col-center{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .flex-row-center{
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .absolute-center{
-      position: absolute;
-      top: 50%;
-      left: 0;
-      right: 0;
-      margin: auto;
-      transform: translateY(-50%);
-    }
-    #screen-container{
-      /* overflow-x: hidden; */
-      overflow-y: scroll;
-    }
-
-    .screen {
-      width: 100%;
-      height: 100%;
-      display: none;
-      background: var(--clr-primary);
-    }
-
-
-    #splash-container{
-      width: 100%;
-      height: 100%;
-      padding-top: 40%;
-    }
-    #form{
-      width: 100%;
-    }
-    #form textarea, #form input{
-      margin: 2px 10px 10px 0px;
-      width: 100%;
-    }
-    #form > textarea{
-      padding: 4px;
-      height: 100%;
-    }
-
-    #generate-btn, #download-btn{
-      margin: auto;
-    }
-    .screen.active{
-      display: flex;
-      flex-direction: column;
-    }
-    #form > div{
-      width: 100%;
-    }
-  </style>
+  <link rel="stylesheet" href="popup.css"> 
 </head>
 <body>
 <div class="container flex-col-center" id="screen-container">
-    <div class="screen active" id="splash-container"><h1>LOGO</h1><img src="./assets/rippleLoading.svg"></div> 
+    <div class="screen active" id="splash-container"><h1>Tailor Resume</h1><img src="./assets/rippleLoading.svg"></div> 
     <div class="screen" id = "form-container">
-      <h1>Form</h1>
+      <h2 class="title">Resume Form</h2>
 
       <form class="flex-col" id="form" onsubmit="">
+        <label for="key">Resume</label>
+        <textarea rows="8" maxlength="15000" id="key" name="key" placeholder="Enter your current resume (latex) ..."></textarea>
+    
+        <label for="key">API key</label>
+        <input  maxlength="200" id="key" name="key" placeholder="Enter your GPT API Key ..." required></input>
+    
         <div class="flex-row-between">
             <div class="flex-col">
-                <label for="first-name">First name:</label>
-                <input maxlength="25" type="text" id="first-name" name="first-name" required>
+                <label for="first-name">First name</label>
+                <input maxlength="25" type="text" id="first-name" name="first-name" placeholder="Enter your first name ..." required>
             </div>
             <div class="flex-col">
-                <label for="last-name">Last name:</label>
-                <input maxlength="25" type="text" id="last-name" name="last-name" required>
+                <label for="last-name">Last name</label>
+                <input maxlength="25" type="text" id="last-name" name="last-name" required placeholder="Enter your last name ...">
             </div>
         </div>
     
-            <label for="skills">Skills:</label>
-            <textarea rows="10" maxlength="4000" id="skills" name="skills" ></textarea>
+            <label for="skills">Skills</label>
+            <textarea rows="8" maxlength="4000" id="skills" name="skills" placeholder="List your skills ..."></textarea>
         
-            <label for="experiences">Experiences:</label>
-            <textarea rows="10" maxlength="4000" id="experiences" name="experiences" ></textarea>
+            <label for="experiences">Experiences</label>
+            <textarea rows="8" maxlength="4000" id="experiences" name="experiences" placeholder="List your experiences ..."></textarea>
         
-            <label for="projects">Projects:</label>
-            <textarea rows="10" maxlength="4000" id="projects" name="projects" ></textarea>
+            <label for="projects">Projects</label>
+            <textarea rows="8" maxlength="4000" id="projects" name="projects" placeholder="List your projects ..." ></textarea>
         
-            <label for="certifications">Certifications:</label>
-            <textarea  rows="10"maxlength="4000" id="certifications" name="certifications" ></textarea>
+            <label for="certifications">Certifications</label>
+            <textarea  rows="8"maxlength="4000" id="certifications" name="certifications" placeholder="List your certifications ..."></textarea>
 
-            <label for="jobdescription">Job Description:</label>
-            <textarea  rows="10"maxlength="4000" id="jobdescription" name="jobdescription" ></textarea>
+            <label for="jobdescription">Job Description</label>
+            <textarea  rows="8"maxlength="4000" id="job-description" name="job-description" placeholder="Enter the job description ..."></textarea>
         
         <button type="submit" id="generate-btn">Generate Resumes</button>
     </form>
   
     </div>
-    <div class="screen" id = "resume-container">RESUME
+    <div class="screen" id = "resume-container"><h2>Resumes</h2>
       <button id="download-btn">Download PDF</button>
+      <button id="back-btn">Back</button>
     </div>
  
 </div>

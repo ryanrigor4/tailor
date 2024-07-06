@@ -13,7 +13,7 @@ const splashScreen = document.getElementById("splash-container");
 
 let downloadBtn = document.getElementById('download-btn');
 let generateBtn = document.getElementById('generate-btn');
-
+let backBtn = document.getElementById("back-btn")
 function slideScreen(screenIndex) {
   for (const screen of screens) {
     screen.classList.remove("active");
@@ -21,20 +21,39 @@ function slideScreen(screenIndex) {
   screens[screenIndex].classList.add("active");
 }
 
+function isValidForm(formData){
+
+  formData.forEach((value, key) => {
+    console.log(key, value);
+  });
+  return true;
+}
+
 window.onload = () => {
-  loadFormData(); //fills form based on localStorage
+  loadFormData(); 
 
   downloadBtn.addEventListener('click', () => {
     console.log("Fetching PDF!");
     downloadPDF();
   });
 
+  backBtn.addEventListener('click', (e) => {
+    slideScreen(1);
+  })
+
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    updateFormData();
-    // gpt api call
+    const formData = new FormData(e.target);
+
     
-    slideScreen(2);
+    if(isValidForm(formData)){
+      updateFormData();
+      
+      // gpt api call
+
+      slideScreen(2);
+    }
+    
   });
 
   // mocking load

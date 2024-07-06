@@ -9,7 +9,7 @@ export let loadFormData = () => {
         document.getElementById("experiences").value = formData.experiences || '';
         document.getElementById("projects").value = formData.projects || '';
         document.getElementById("certifications").value = formData.certifications || '';
-        document.getElementById("jobdescription").value = formData.jobdescription || '';
+        document.getElementById("job-description").value = formData.jobdescription || '';
         console.log("Successfully loaded Form Data")
     } catch (error) {
         console.error("Error loading form data:", error); 
